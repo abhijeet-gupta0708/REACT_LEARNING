@@ -7,9 +7,10 @@ export default function useFunctionality ()
     const [change_amount,setchange_amount]=useState(0); // Used to change the changed or converted value of the currency
     const [from,setfrom]=useState("USD") // Default currency type
     const [to,setto]=useState("INR") // Final Currency Type 
-    const [convert]=useCurrency(from) // Use COnvert Button 
 
-    const options=Object.keys(useCurrency) // Make list of all the available conversion Currency Type
+    const currencyInfo=useCurrency(from) // Use All Currencies Rates
+
+    const options=Object.keys(currencyInfo) // Make list of all the available conversion Currency Type
 
 
     {/* Function to Convert the Currencies */}
@@ -28,8 +29,8 @@ export default function useFunctionality ()
         setchange_amount(amount)
         setamount(change_amount)
     }
-    return (
-        <>
+    return {
+        
             amount,
             setamount,
             change_amount,
@@ -38,11 +39,12 @@ export default function useFunctionality ()
             setfrom,
             to,
             setto,
-            convert,
+            convertcurrency,
             swap,
             useCurrency,
-            options
-        </>
-    )
+            currencyInfo,
+            options,
+        
+    }
 
 }

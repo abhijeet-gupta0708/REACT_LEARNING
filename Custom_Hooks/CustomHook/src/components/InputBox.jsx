@@ -54,18 +54,14 @@ export default function InputBox(
                     {/* Right Side Div */}
                     <div className="rightside m-6 flex flex-col gap-2 justify-center items-center">
                         <h1 className="text-xl border-black border-2 ">Currency Type</h1>
-                       <select className="border-2 rounded-3xl mr-4  "
+                    <select className="border-2 rounded-3xl mr-4  "
                                     value={selectcurrency}
                                     onChange={(e)=>onchangecurrency && onchangecurrency(e.target.value)}
                                     disabled={currencydisable}
                                     >
-                                    {currency.map((curr)=>(
-                                        <option 
-                                        key={curr}
-                                            value={curr}>
-                                            {curr}
+                                        <option value={"USD"}>
+                                            USD
                                         </option>
-                                    ))}
                         </select>
                     </div>
 
@@ -86,21 +82,24 @@ export default function InputBox(
                 <div className="topInputBox bg-white w-full p-2 rounded-md flex flex-wrap 
                 justify-between items-center m-2">
  
-                    {/* Left Side of The Div */}
-                    <div className="leftside">
-                            
-                            <label className="bg-red-900 text-3xl"htmlFor={amount_input}>
-                               {label}
+                     {/* Left Side of The Div */}
+                    <div className="leftside ">
+                            <div className="  ">
+                             <label className=" text-3xl text-red-500" htmlFor={amount_input}>
+                                {label}
                             </label>
+                            </div>
+                                
+                            
                             <input 
-                                id={amount_input}
                                 type="number"
+                                id={amount_input}
                                 placeholder="Enter Amount"
-                                value={amount}
+                                value={amount || ""}
                                 min={0}
-                                onChange={(e)=>onchangeamount && onchangeamount(Number(e.target.value))}
                                 disabled={amountdisable}
-                                className="bg-amber-600 m-4 text-lg text-center"
+                                onChange={(e)=>onchangeamount && onchangeamount(Number(e.target.value))}
+                                className="bg-amber-600 m-4  text-lg text-center"
                              />
                             
                            

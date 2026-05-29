@@ -23,7 +23,14 @@ function App() {
     <>
     <h1 className="bg-red-500 flex items-center text-center justify-center text-2xl">Custom Hook</h1>
     
-    <InputBox />
+     <InputBox
+        label="From"
+        amount={amount}
+        currency={options}
+        selectcurrency={from}
+        onchangeamount={setamount}
+        onchangecurrency={setfrom}
+      />
     </>
   )
 }
