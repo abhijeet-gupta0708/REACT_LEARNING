@@ -1,50 +1,47 @@
-import { useState,useId,useEffect } from "react";
-import InputBox from "./InputBox";
+import { useState } from "react";
 import useCurrency from "../Hooks/currencyhook";
-export default function useFunctionality ()
-{
-    const [amount,setamount]=useState(0) // Used to change the input amout 
-    const [change_amount,setchange_amount]=useState(0); // Used to change the changed or converted value of the currency
-    const [from,setfrom]=useState("USD") // Default currency type
-    const [to,setto]=useState("INR") // Final Currency Type 
 
-    const currencyInfo=useCurrency(from) // Use All Currencies Rates
+export default function useFunctionality() {
 
-    const options=Object.keys(currencyInfo) // Make list of all the available conversion Currency Type
+    const [amount, setamount] = useState(0);
+    const [change_amount, setchange_amount] = useState(0);
 
+    const [from, setfrom] = useState("usd");
+    const [to, setto] = useState("inr");
 
-    {/* Function to Convert the Currencies */}
+    const currencyInfo = useCurrency(from);
 
-    const convertcurrency =[amount*useCurrency(to)]
+    console.log(currencyInfo);
+    const options = Object.keys(currencyInfo);
+console.log(options);
 
+    const convert = () => {
 
+        setchange_amount(
+            amount * currencyInfo[to]
+        );
+    };
 
+    const swap = () => {
 
-    {/* Function for Swapping the Value and Amount */}
+        setfrom(to);
+        setto(from);
 
-    const swap =()=> 
-    {
-        setfrom(to)
-        setto(from)
-        setchange_amount(amount)
-        setamount(change_amount)
-    }
+        setamount(change_amount);
+        setchange_amount(amount);
+    };
+
     return {
-        
-            amount,
-            setamount,
-            change_amount,
-            setchange_amount,
-            from,
-            setfrom,
-            to,
-            setto,
-            convertcurrency,
-            swap,
-            useCurrency,
-            currencyInfo,
-            options,
-        
-    }
-
+        amount,
+        setamount,
+        change_amount,
+        setchange_amount,
+        from,
+        setfrom,
+        to,
+        setto,
+        convert,
+        swap,
+        options
+    };
 }

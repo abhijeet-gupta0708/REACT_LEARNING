@@ -1,14 +1,19 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
-// Making a custom Hook 
-export default function useCurrency(currency) 
-{   
-    const[data,setdata]=useState({})
-    useEffect(()=>{
-         fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
-         .then((res)=>res.json ())
-         .then((res)=>setdata(res[currency]))
-    },[currency])
+export default function useCurrency(currency) {
+
+    const [data, setdata] = useState({});
+
+    useEffect(() => {
+
+        fetch(
+            `https://api.frankfurter.dev/v1/latest?base=${currency}`
+        )
+            .then((res) => res.json())
+           .then((res)=>{setdata(res.rates)})
+           .catch((err)=>console.log(err));
+    },[currency]);
+
+
     return data;
-   
 }
